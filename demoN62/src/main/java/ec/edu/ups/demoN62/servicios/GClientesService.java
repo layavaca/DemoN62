@@ -3,7 +3,9 @@ package ec.edu.ups.demoN62.servicios;
 import java.util.List;
 
 import ec.edu.ups.demoN62.datos.PersonaDao;
+import ec.edu.ups.demoN62.datos.TickecCabDao;
 import ec.edu.ups.demoN62.modelo.Persona;
+import ec.edu.ups.demoN62.modelo.TickecCab;
 import ec.edu.ups.demoN62.negocio.GestionClientes;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -22,6 +24,8 @@ public class GClientesService {
 	private PersonaDao daoPersona;
 	@Inject
 	private GestionClientes gClientes;
+	@Inject
+	private TickecCabDao daoTickecCab;
 	
 	@GET
 	@Path("Saludo")
@@ -69,12 +73,40 @@ public class GClientesService {
 		}
 	}
 	
+	/*@POST
+	@Path("eliminar")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response eliminarCliente(Persona persona) {
+		try {
+			gClientes.eliminarCliente(persona);
+			return Response.status(Response.Status.OK).entity(persona).build();
+	} catch (Exception e) {
+		
+		// TODO: handle exception
+		Error error = new Error();
+		error.setCodigo(99);
+		error.setMensaje("error al guardar:"+ e.getMessage());
+		return Response.status(Response.Status.OK).entity(error).build();
+	}
+	}
+	*/
 	@GET
 	@Path("lista")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Persona> getListadoPersona(){
 		return daoPersona.getAll();
 	
+	}
+	
+	
+	@GET
+	@Path("lista1")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getPersona(){
+		List<Persona> listado=
+				gClientes.getClientes();
+		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 	
 }
