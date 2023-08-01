@@ -16,10 +16,10 @@ public class Vehiculo implements Serializable  {
 	private int idVeh;
 	private String placaVeh;
 	private String modeloVeh;
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name="idCedula")
 	private Persona persona;
-	
+	*/
 	public int getIdVeh() {
 		return idVeh;
 	}
@@ -38,16 +38,10 @@ public class Vehiculo implements Serializable  {
 	public void setModeloVeh(String modeloVeh) {
 		this.modeloVeh = modeloVeh;
 	}
-	public Persona getPersona() {
-		return persona;
-	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
+	
 	@Override
 	public String toString() {
-		return "Vehiculo [idVeh=" + idVeh + ", placaVeh=" + placaVeh + ", modeloVeh=" + modeloVeh + ", persona="
-				+ persona + "]";
+		return "Vehiculo [idVeh=" + idVeh + ", placaVeh=" + placaVeh + ", modeloVeh=" + modeloVeh +  "]";
 	}
 	
 	

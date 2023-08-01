@@ -34,18 +34,34 @@ public class GestionClientes {
 		}
 	}
 
-	public boolean isCedulaValida(String cedula) {
-		return cedula.length() == 10;
+	public void eliminarCliente(String cedulaPer)  throws Exception {
+		if (!this.isCedulaValida(cedulaPer))
+			throw new Exception("cedula incorrecta");
+		if(daoPersona.read(cedulaPer)!= null) {
+			try {
+				daoPersona.delete(cedulaPer);
+			} catch (Exception e) {
+				throw new Exception("Error al eliminar:" + e.getMessage());
+				// TODO: handle exception
+			}
+		}			
 	}
-
-	public void eliminarCliente(Persona persona) {
-		daoPersona.delete(persona.getCedulaPer());					
-	}
+	/*
+	public void eliminarEntidad(Long id) {
+        Entidad entidad = entityManager.find(Entidad.class, id);
+        if (entidad != null) {
+            entityManager.remove(entidad);
+        }
+    }*/
 
 	public void guardarClientes(String cedulaPer, String nombrePer, String direccionPer) {
 	}
 
 	public List<Persona> getClientes() {
 		return daoPersona.getAll();
+	}
+	
+	public boolean isCedulaValida(String cedula) {
+		return cedula.length() == 10;
 	}
 }

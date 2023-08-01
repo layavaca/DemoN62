@@ -52,7 +52,7 @@ public class DemoDatos {
 		Vehiculo veh = new Vehiculo();
 		veh.setPlacaVeh("ABC0102");
 		veh.setModeloVeh("Toyota");
-		veh.setPersona(p);
+		
 		
 		daoVehiculo.insert(veh);
 		

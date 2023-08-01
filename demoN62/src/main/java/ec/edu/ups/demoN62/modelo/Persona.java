@@ -13,8 +13,8 @@ public class Persona implements Serializable {
 	@Id
 //	@GeneratedValue
 	//private int idPer;
-	private String nombrePer;
 	private String cedulaPer;
+	private String nombrePer;	
 	private String direccionPer;
 	
 	
